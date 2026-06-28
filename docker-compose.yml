@@ -1,0 +1,9 @@
+services:
+  kidstream:
+    build: .
+    container_name: kidstream
+    ports:
+      - "8787:8787"
+    volumes:
+      - ./config/videos.local.json:/app/config/videos.local.json:ro
+    restart: unless-stopped

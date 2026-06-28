@@ -1,0 +1,33 @@
+{
+  "appName": "Kidstream",
+  "profileName": "Kids",
+  "defaultPlaybackRate": 0.75,
+  "recentVideosPerChannel": 15,
+  "channels": [
+    {
+      "id": "demo-videos",
+      "name": "Demo Videos",
+      "description": "Replace these with channels and videos you approve.",
+      "avatar": "",
+      "youtubeChannelId": "",
+      "includeShorts": false,
+      "blockedVideoIds": [],
+      "videos": [
+        {
+          "youtubeId": "M7lc1UVf-VE",
+          "title": "YouTube Player API Demo",
+          "description": "A known public YouTube embed used here only as a starter entry.",
+          "duration": "2:02",
+          "tags": ["demo", "setup"]
+        },
+        {
+          "youtubeId": "YE7VzlLtp-4",
+          "title": "Big Buck Bunny",
+          "description": "Sample video entry. Replace or remove this in videos.local.json.",
+          "duration": "9:56",
+          "tags": ["demo"]
+        }
+      ]
+    }
+  ]
+}

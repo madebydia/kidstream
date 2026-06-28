@@ -1,0 +1,17 @@
+[Unit]
+Description=Kidstream
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/kidstream
+Environment=HOST=0.0.0.0
+Environment=PORT=8787
+Environment=KIDSTREAM_CONFIG=/opt/kidstream/config/videos.local.json
+ExecStart=/usr/bin/python3 /opt/kidstream/server.py
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
