@@ -12,6 +12,7 @@ import json
 import os
 import re
 import shutil
+import ssl
 import tempfile
 import time
 import urllib.error
@@ -733,7 +734,18 @@ def main() -> None:
     host = os.environ.get("HOST", "127.0.0.1")
     port = int(os.environ.get("PORT", "8787"))
     server = ThreadingHTTPServer((host, port), Handler)
-    print(f"Kidstream running at http://{host}:{port}")
+    scheme = "http"
+    tls_cert = env_value("KIDSTREAM_TLS_CERT")
+    tls_key = env_value("KIDSTREAM_TLS_KEY")
+    if tls_cert or tls_key:
+        if not tls_cert or not tls_key:
+            raise RuntimeError("Set both KIDSTREAM_TLS_CERT and KIDSTREAM_TLS_KEY to enable HTTPS.")
+        context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+        context.load_cert_chain(tls_cert, tls_key)
+        server.socket = context.wrap_socket(server.socket, server_side=True)
+        scheme = "https"
+
+    print(f"Kidstream running at {scheme}://{host}:{port}")
     print(f"Using config: {config_path()}")
     server.serve_forever()
 

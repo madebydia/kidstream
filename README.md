@@ -33,6 +33,16 @@ Open:
 http://127.0.0.1:8787
 ```
 
+To serve HTTPS directly from the app, provide a certificate and key:
+
+```bash
+KIDSTREAM_TLS_CERT=/path/to/cert.pem KIDSTREAM_TLS_KEY=/path/to/key.pem python3 server.py
+```
+
+For LAN-only installs, this usually means a locally trusted or self-signed
+certificate for the machine name, such as `mad.local`. Browsers will warn on a
+self-signed certificate until you add a local trust exception.
+
 The server uses `config/videos.local.json` when it exists. If it does not exist,
 it falls back to `config/videos.example.json`.
 
